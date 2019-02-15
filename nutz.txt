@@ -1,0 +1,12 @@
+dao.query(xx.class,Cnd.where,dao.createPager(第几页，多少条))
+
+Sql sql = Sqls.create("select p.name,p.age,c.cityname from t_person p inner join city c on p.cid=c.id where p.name=@name");
+        sql.setParam("name","allen");
+        sql.setCallback(Sqls.callback.entities());
+        sql.setEntity(dao.getEntity(Allen.class));
+        Sql execute = dao.execute(sql);
+        List<Allen> lista = sql.getList(Allen.class);
+        for (Allen allen:lista
+             ) {
+            System.out.println(allen);
+        }
